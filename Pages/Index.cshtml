@@ -1,0 +1,132 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Radio, conversación y comunidad en vivo";
+    ViewData["LandingPage"] = true;
+
+    // Contenido principal: cambia estos valores para actualizar el programa al aire.
+    const string programaActual = "Fuera de Frekuencia";
+    const string conductorPrincipal = "Felipe";
+    const string segundoConductor = "Co-host";
+    const string horarioActual = "21:00 — 23:00";
+}
+
+<div class="radio-site">
+    <header class="site-header">
+        <div class="shell header-inner">
+            <a class="brand" href="#inicio" aria-label="Frekuencia, inicio">
+                <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                <span>Frekuencia</span>
+            </a>
+            <nav aria-label="Navegación principal">
+                <a class="active" href="#inicio">Inicio</a>
+                <a href="#programacion">Programación</a>
+                <a href="#nosotros">Nosotros</a>
+            </nav>
+            <div class="header-socials"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="TikTok">♪</a></div>
+            <button class="menu-button" type="button" aria-label="Abrir navegación"><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main id="inicio">
+        <section class="on-air shell">
+            <div class="hero-intro">
+                <p class="pretitle"><span class="live-dot"></span> Transmitiendo desde Coquimbo</p>
+                <h1>Estamos en la misma <em>Frekuencia.</em></h1>
+                <p>Radio, conversación y comunidad en vivo. Entra, sube el volumen y quédate a conversar.</p>
+            </div>
+
+            <div class="studio-grid">
+                <article class="radio-card">
+                    <div class="radio-visual">
+                        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+                        <div class="live-badge"><span class="live-dot"></span> En vivo</div>
+                        <div class="listeners"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> 128 escuchando</div>
+                        <div class="frequency-lines" aria-hidden="true">@for (var i = 0; i < 48; i++) { <i style="--bar:@i"></i> }</div>
+                        <div class="show-art"><span>FF</span><small>EN LA MISMA<br />FREKUENCIA</small></div>
+                        <p class="signal-label">Señal en directo <span></span> 96.8 ONLINE</p>
+                    </div>
+                    <div class="player-info">
+                        <div class="now-playing"><span>Ahora al aire · @horarioActual</span><h2>@programaActual</h2><p>Conversaciones, historias, tecnología, música y cualquier tema que termine apareciendo.</p></div>
+                        <div class="hosts">
+                            <div class="host"><span class="avatar avatar-f">F</span><p><strong>@conductorPrincipal</strong><small>Conductor</small></p></div>
+                            <b>+</b>
+                            <div class="host"><span class="avatar avatar-c">C</span><p><strong>@segundoConductor</strong><small>Co-conductor</small></p></div>
+                        </div>
+                        <div class="player-controls">
+                            <button id="playButton" class="play-button" type="button" aria-label="Reproducir radio" aria-pressed="false"><svg class="play-icon" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></svg><svg class="pause-icon" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM14 5h4v14h-4z"/></svg></button>
+                            <div class="track"><span id="playerStatus">Presiona play para escuchar</span><div class="track-line"><i></i></div></div>
+                            <div class="volume"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M18 6a8 8 0 0 1 0 12"/></svg><input type="range" min="0" max="100" value="72" aria-label="Volumen" /></div>
+                        </div>
+                    </div>
+                </article>
+
+                <aside class="chat-card" aria-label="Chat en vivo">
+                    <div class="chat-header"><div><span class="chat-icon">#</span><p><strong>Chat en vivo</strong><small><i></i> 34 personas conectadas</small></p></div><button type="button" aria-label="Opciones">•••</button></div>
+                    <div id="chatMessages" class="chat-messages" aria-live="polite">
+                        <div class="system-message"><span></span> Bienvenidos al chat de Frekuencia</div>
+                        <div class="message"><span class="avatar av-camila">C</span><p><strong>Camila <time>21:04</time></strong>Holaaa recién llego 👋</p></div>
+                        <div class="message"><span class="avatar av-pipe">P</span><p><strong>Pipe <time>21:04</time></strong>Bienvenida jajaja</p></div>
+                        <div class="message"><span class="avatar av-matias">M</span><p><strong>Matías <time>21:05</time></strong>Está bueno este tema</p></div>
+                        <div class="message"><span class="avatar av-sofia">S</span><p><strong>Sofía <time>21:06</time></strong>Yo quiero opinar de esto 😂</p></div>
+                        <div class="message"><span class="avatar av-diego">D</span><p><strong>Diego <time>21:07</time></strong>Saludos desde Coquimbo 🌊</p></div>
+                    </div>
+                    <form id="chatForm" class="chat-form"><label for="chatInput">Participa en la conversación</label><div><input id="chatInput" maxlength="120" autocomplete="off" placeholder="Escribe un mensaje..." /><button type="submit">Enviar <span>↗</span></button></div><small>Esto es una demostración visual. El mensaje solo aparecerá en tu pantalla.</small></form>
+                </aside>
+            </div>
+        </section>
+
+        <section id="programacion" class="schedule-section">
+            <div class="shell"><div class="section-heading"><div><p class="eyebrow">Programación</p><h2>Hoy en Frekuencia</h2><p>Una tarde para escuchar, conversar y descubrir.</p></div><div class="today"><span></span> Lunes · 5 de octubre</div></div>
+                <div class="schedule">
+                    <article><time>18:00</time><div class="schedule-mark purple">MR</div><div><h3>Modo Random</h3><p>Música y conversación</p></div><span class="status finished">Finalizado</span></article>
+                    <article><time>20:00</time><div class="schedule-mark blue">FT</div><div><h3>Frekuencia Tech</h3><p>Tecnología y actualidad</p></div><span class="status finished">Finalizado</span></article>
+                    <article class="current"><time>21:00</time><div class="schedule-mark coral">FF</div><div><h3>@programaActual</h3><p>@conductorPrincipal &amp; @segundoConductor</p></div><span class="status live"><i class="live-dot"></i> En vivo</span></article>
+                    <article><time>23:00</time><div class="schedule-mark pink">AF</div><div><h3>After Frekuencia</h3><p>Música y conversación nocturna</p></div><span class="status upcoming">A continuación</span></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros" class="about shell">
+            <div class="about-graphic" aria-hidden="true"><span class="mic">●</span><div class="sound-rings"><i></i><i></i><i></i></div><small>DESDE<br />COQUIMBO<br />AL MUNDO</small></div>
+            <div class="about-copy"><p class="eyebrow">Nuestra señal</p><h2>¿Qué es Frekuencia?</h2><p>Frekuencia nació para conversar sin tanto filtro. Un espacio para hablar de tecnología, historias, música, actualidad y cualquier tema que termine apareciendo cuando dos amigos prenden los micrófonos.</p><blockquote>“Dos micrófonos.<br /><em>Una radio. Cero guion.</em>”</blockquote></div>
+        </section>
+
+        <section class="join shell"><div><p class="eyebrow">La conversación sigue</p><h2>Súmate a la Frekuencia</h2><p>Escucha, participa en el chat y sé parte de la conversación mientras estamos al aire.</p></div><div class="social-buttons"><a href="#"><span>◎</span> Instagram</a><a href="#"><span>♪</span> TikTok</a><a href="#"><span>◖◗</span> Discord</a></div></section>
+    </main>
+
+    <footer><div class="shell footer-main"><div><a class="brand" href="#inicio"><span class="brand-symbol"><i></i><i></i><i></i><i></i><i></i></span><span>Frekuencia</span></a><p>Estamos en la misma Frekuencia.</p></div><nav><a href="#inicio">Inicio</a><a href="#programacion">Programación</a><a href="#nosotros">Nosotros</a><a href="#">Instagram</a><a href="#">Contacto</a></nav></div><div class="shell footer-bottom"><span>© 2026 Frekuencia</span><span>Radio online · Coquimbo, Chile <i></i></span></div></footer>
+</div>
+
+@section Scripts {
+<script>
+(() => {
+    const play = document.getElementById('playButton');
+    const status = document.getElementById('playerStatus');
+    play?.addEventListener('click', () => {
+        const active = play.classList.toggle('playing');
+        play.setAttribute('aria-pressed', active.toString());
+        play.setAttribute('aria-label', active ? 'Pausar radio' : 'Reproducir radio');
+        status.textContent = active ? 'Simulando transmisión en vivo' : 'Transmisión en pausa';
+        document.querySelector('.radio-visual')?.classList.toggle('paused', !active);
+    });
+
+    const form = document.getElementById('chatForm');
+    const input = document.getElementById('chatInput');
+    const messages = document.getElementById('chatMessages');
+    form?.addEventListener('submit', event => {
+        event.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        const message = document.createElement('div');
+        message.className = 'message own-message';
+        const time = new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+        message.innerHTML = `<span class="avatar av-you">T</span><p><strong>Tú <time>${time}</time></strong></p>`;
+        message.querySelector('p').append(document.createTextNode(text));
+        messages.append(message);
+        input.value = '';
+        messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+    });
+})();
+</script>
+}
