@@ -26,6 +26,76 @@ body.landing-body {
   background: #17152a;
 }
 
+/* Fallbacks globales para contenido generado mediante JavaScript y publicación estática. */
+.radio-site,
+.radio-site h1,
+.radio-site h2,
+.radio-site h3,
+.radio-site .brand,
+.radio-site .brand > span:last-child {
+  color: #fff !important;
+}
+
+.radio-site .message {
+  display: flex;
+  gap: 9px;
+  padding: 8px 6px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.radio-site .message p {
+  margin: 0;
+  color: #f4f1f6 !important;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.radio-site .message strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #fff !important;
+  font-size: 9px;
+}
+
+.radio-site .message time {
+  margin-left: 5px;
+  color: #bdb5c3 !important;
+  font-size: 7px;
+  font-weight: 400;
+}
+
+.radio-site .message .avatar {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff !important;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.radio-site .message.own-message {
+  background: rgba(173, 108, 255, .14);
+}
+
+.radio-site .message.incoming {
+  animation: global-message-in .35s ease;
+}
+
+.radio-site .av-camila { background: linear-gradient(145deg, #bd5bdc, #703d91); }
+.radio-site .av-pipe { background: linear-gradient(145deg, #35a8c5, #326777); }
+.radio-site .av-matias { background: linear-gradient(145deg, #f28d50, #914429); }
+.radio-site .av-sofia { background: linear-gradient(145deg, #6d77e8, #3e438d); }
+.radio-site .av-you { background: linear-gradient(145deg, #ad6cff, #42c9ff); }
+
+@keyframes global-message-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;

@@ -133,15 +133,30 @@
     const form = document.getElementById('chatForm');
     const input = document.getElementById('chatInput');
     const messages = document.getElementById('chatMessages');
+    const createChatMessage = (name, initial, text, avatarClass, extraClass = '') => {
+        const template = messages?.querySelector('.message');
+        if (!template) return null;
+        const message = template.cloneNode(true);
+        message.className = `message ${extraClass}`.trim();
+        const avatar = message.querySelector('.avatar');
+        avatar.className = `avatar ${avatarClass}`;
+        avatar.textContent = initial;
+        const paragraph = message.querySelector('p');
+        paragraph.replaceChildren();
+        const heading = document.createElement('strong');
+        heading.append(document.createTextNode(`${name} `));
+        const time = document.createElement('time');
+        time.textContent = 'Ahora';
+        heading.append(time);
+        paragraph.append(heading, document.createTextNode(text));
+        return message;
+    };
     form?.addEventListener('submit', event => {
         event.preventDefault();
         const text = input.value.trim();
         if (!text) return;
-        const message = document.createElement('div');
-        message.className = 'message own-message';
-        const time = new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
-        message.innerHTML = `<span class="avatar av-you">T</span><p><strong>Tú <time>${time}</time></strong></p>`;
-        message.querySelector('p').append(document.createTextNode(text));
+        const message = createChatMessage('Tú', 'T', text, 'av-you', 'own-message');
+        if (!message) return;
         messages.append(message);
         input.value = '';
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
@@ -157,9 +172,8 @@
     setInterval(() => {
         if (document.hidden || !messages) return;
         const item = demoMessages[demoIndex++ % demoMessages.length];
-        const message = document.createElement('div');
-        message.className = 'message incoming';
-        message.innerHTML = `<span class="avatar ${item[3]}">${item[1]}</span><p><strong>${item[0]} <time>Ahora</time></strong>${item[2]}</p>`;
+        const message = createChatMessage(item[0], item[1], item[2], item[3], 'incoming');
+        if (!message) return;
         messages.append(message);
         while (messages.querySelectorAll('.message').length > 9) messages.querySelector('.message').remove();
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
