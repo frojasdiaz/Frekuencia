@@ -1,92 +1,17 @@
 @page
 @model IndexModel
-@{ ViewData["Title"] = "Música para acompañarte"; ViewData["LandingPage"] = true; }
-
+@{ ViewData["Title"]="Tu radio para todos los días"; ViewData["LandingPage"]=true; }
 <div class="site">
-    <header class="header wrap">
-        <a class="logo" href="#inicio"><span class="logo-wave"><i></i><i></i><i></i><i></i><i></i></span><strong>frekuencia</strong></a>
-        <nav><a href="#inicio">Escuchar</a><a href="#programacion">Lo que suena</a><a href="#historia">Nosotros</a></nav>
-        <div class="header-right"><span><i></i> al aire</span><a href="#chat">Abrir chat</a></div>
-    </header>
-
-    <main id="inicio">
-        <section class="hero wrap">
-            <div class="hero-copy">
-                <p class="stamp">Desde Coquimbo para donde estés</p>
-                <h1>Música para<br /><em>sentir el día.</em></h1>
-                <p class="lead">Una radio online hecha sin algoritmos fríos. Canciones elegidas con cariño, conversaciones espontáneas y compañía real.</p>
-                <div class="hero-actions"><button id="heroPlay" class="main-play" type="button"><span>▶</span> Escuchar ahora</button><a href="#programacion">Ver qué viene ↓</a></div>
-                <div class="live-faces"><span class="face face-a">F</span><span class="face face-b">C</span><p><strong>Felipe &amp; compañía</strong><small>A veces hablamos. Siempre ponemos música.</small></p></div>
-            </div>
-
-            <div class="radio-poster">
-                <span class="poster-note">SONANDO AHORA</span>
-                <div class="vinyl"><div class="vinyl-label"><b>F.</b><small>RADIO</small></div></div>
-                <div class="scribble">♪</div>
-                <div class="song-card"><p>AHORA EN FREKUENCIA</p><h2>Midnight Signals</h2><span>Neon Coast</span><div class="song-line"><i></i></div></div>
-                <span class="poster-side">NON-STOP MUSIC · 24/7</span>
-            </div>
-        </section>
-
-        <section class="player-strip">
-            <div class="wrap player-inner">
-                <button id="playButton" class="round-play" type="button" aria-label="Reproducir"><span class="play-symbol">▶</span><span class="pause-symbol">Ⅱ</span></button>
-                <div class="playing"><small>SONANDO AHORA</small><strong>Midnight Signals</strong><span>Neon Coast</span></div>
-                <div class="wave" aria-hidden="true">@for(var i=0;i<30;i++){<i style="--n:@i"></i>}</div>
-                <button id="heart" class="heart" type="button" aria-label="Me gusta">♡ <span>24</span></button>
-                <div class="volume"><span>−</span><input type="range" min="0" max="100" value="74" aria-label="Volumen"/><span>＋</span></div>
-                <div class="people"><b>128</b><span>escuchando contigo</span></div>
-            </div>
-        </section>
-
-        <section class="social-room wrap" id="chat">
-            <div class="room-copy"><p class="kicker">LA SALA DE FREKUENCIA</p><h2>La música suena mejor <em>acompañados.</em></h2><p>Comenta la canción, saluda desde donde estés o déjanos una idea para el próximo programa. Esto es radio, pero también es juntarnos.</p><div class="vibe"><span>La vibra ahora</span><button data-vibe>🔥 <b>18</b></button><button data-vibe>💜 <b>13</b></button><button data-vibe>🌊 <b>10</b></button></div></div>
-            <div class="chat-window">
-                <div class="chat-top"><div><i></i><strong>Conversación en vivo</strong></div><span><b id="onlineCount">34</b> por aquí</span></div>
-                <div id="chatMessages" class="messages">
-                    <article class="msg left"><span class="avatar pink">C</span><div><small>Camila · ahora</small><p>Esta canción se siente como manejar de noche ✨</p></div></article>
-                    <article class="msg right"><div><small>Pipe · ahora</small><p>Justo lo que necesitaba para trabajar</p></div><span class="avatar blue">P</span></article>
-                    <article class="msg left"><span class="avatar green">D</span><div><small>Diego · ahora</small><p>Saludos desde Coquimbo 🌊</p></div></article>
-                    <article class="msg right"><div><small>Sofía · ahora</small><p>¿Cuándo hacen programa con invitados? 👀</p></div><span class="avatar violet">S</span></article>
-                </div>
-                <form id="chatForm"><input id="chatInput" maxlength="100" autocomplete="off" placeholder="Di algo buena onda..."/><button>Enviar ↗</button></form>
-                <p class="demo-note">Demo visual · el mensaje solo aparece en tu pantalla</p>
-            </div>
-        </section>
-
-        <section class="schedule" id="programacion">
-            <div class="wrap"><div class="section-title"><p class="kicker">HOY EN FREKUENCIA</p><h2>Un día, muchos estados de ánimo.</h2></div>
-                <div class="schedule-list">
-                    <article><time>06—12</time><span class="blob sun">☀</span><div><h3>Mañanas sin apuro</h3><p>Pop suave, indie y canciones para empezar bien.</p></div><small>YA SONÓ</small></article>
-                    <article class="active"><time>AHORA</time><span class="blob play">▶</span><div><h3>Frekuencia Non Stop</h3><p>Una selección musical que va cambiando contigo.</p></div><small><i></i> SONANDO</small></article>
-                    <article><time>21—23</time><span class="blob mic">●</span><div><h3>Fuera de Frekuencia</h3><p>Felipe, amigos, invitados y conversaciones sin plan.</p></div><small>CUANDO COINCIDIMOS</small></article>
-                    <article><time>23—06</time><span class="blob moon">☾</span><div><h3>Después de todo</h3><p>Electrónica suave y música para bajar las revoluciones.</p></div><small>ESTA NOCHE</small></article>
-                </div>
-            </div>
-        </section>
-
-        <section class="manifesto wrap" id="historia"><div class="manifesto-art"><span>F</span><i>~</i><small>COQUIMBO<br/>CHILE</small></div><div><p class="kicker">POR QUÉ HACEMOS ESTO</p><h2>No somos una playlist infinita.</h2><p>Frekuencia nació entre dos amigos, canciones compartidas y ganas de conversar. La mayor parte del tiempo dejamos que la música hable. Cuando podemos, abrimos los micrófonos, traemos invitados y vemos hacia dónde nos lleva la noche.</p><blockquote>Música elegida por personas.<br/><em>Para personas.</em></blockquote></div></section>
-
-        <section class="cta wrap"><div><span>¿Nos escuchamos?</span><h2>Quédate en esta Frekuencia.</h2></div><div><a href="#inicio">▶ Escuchar radio</a><a href="#">◎ Instagram</a><a href="#">♪ TikTok</a></div></section>
-    </main>
-
-    <footer class="footer wrap"><a class="logo" href="#inicio"><span class="logo-wave"><i></i><i></i><i></i><i></i><i></i></span><strong>frekuencia</strong></a><p>Radio online hecha en Coquimbo.</p><span>© 2026 · Estamos en la misma Frekuencia</span></footer>
-
-    <div class="mobile-dock"><button id="mobilePlay" type="button">▶</button><div><small>SONANDO</small><strong>Midnight Signals</strong><span>Neon Coast</span></div><div class="mini-wave"><i></i><i></i><i></i><i></i></div></div>
+<header class="header wrap"><a class="logo" href="#"><span class="logo-wave"><i></i><i></i><i></i><i></i><i></i></span><strong>Frekuencia</strong></a><nav><a href="#radio">Radio</a><a href="#momentos">Momentos</a><a href="#chat">Chat</a><a href="#nosotros">Nosotros</a></nav><a class="header-live" href="#radio"><i></i> Estamos sonando</a></header>
+<main>
+<section class="hero wrap" id="radio"><div class="hero-copy"><span class="hello">HOLA, SOMOS FREKUENCIA 👋</span><h1>La música que te acompaña, <em>sin complicaciones.</em></h1><p>Una radio online desde Coquimbo. Ponemos música todo el día y, cuando coincidimos, prendemos los micrófonos para conversar con amigos e invitados.</p><div class="hero-buttons"><button id="heroPlay"><b>▶</b><span><small>ESCUCHAR AHORA</small>Frekuencia en vivo</span></button><a href="#chat">Entrar al chat →</a></div><div class="trust"><span>F</span><span>C</span><p><strong>Hecha por personas</strong><small>No por un algoritmo.</small></p></div></div>
+<div class="now-card"><div class="cover"><span class="live-tag"><i></i> EN DIRECTO</span><div class="sun"><b>F</b><small>96.8 ONLINE</small></div><div class="floating-note">♪</div></div><div class="song"><small>SONANDO AHORA</small><h2>Midnight Signals</h2><p>Neon Coast</p><div class="timeline"><i></i></div><div class="controls"><button id="heart">♡ <span>24</span></button><button id="playButton" class="main-control"><span class="play-symbol">▶</span><span class="pause-symbol">Ⅱ</span></button><label>🔊 <input type="range" min="0" max="100" value="75"/></label></div></div><div class="next"><small>A CONTINUACIÓN</small><span><b>NS</b><i><strong>Night Swim</strong>Polar Youth</i></span></div></div></section>
+<section class="status-bar"><div class="wrap"><span><i></i> SEÑAL ACTIVA</span><div class="wave">@for(var i=0;i<36;i++){<i style="--n:@i"></i>}</div><p><b>128</b> personas escuchando contigo</p></div></section>
+<section class="moments wrap" id="momentos"><header><span class="eyebrow">UNA RADIO PARA CADA MOMENTO</span><h2>¿Qué necesitas escuchar hoy?</h2></header><div class="moment-grid"><article class="morning"><span>☀</span><small>06:00 — 12:00</small><h3>Partir suave</h3><p>Indie, pop y canciones para comenzar el día sin apuro.</p><button>Escuchar selección →</button></article><article class="day"><span>◉</span><small>12:00 — 21:00</small><h3>Subir la energía</h3><p>Temas nuevos, clásicos y esa canción que no sabías que necesitabas.</p><button>Estás aquí <i></i></button></article><article class="night"><span>☾</span><small>21:00 — 06:00</small><h3>Bajar las luces</h3><p>Electrónica suave y música nocturna para cerrar el día.</p><button>Ver programación →</button></article></div></section>
+<section class="community" id="chat"><div class="wrap community-grid"><div class="community-copy"><span class="eyebrow">LA GENTE DE FREKUENCIA</span><h2>No tienes que escuchar a solas.</h2><p>Comenta lo que suena, saluda desde donde estés o cuéntanos qué canción debería venir después.</p><div class="reaction"><small>¿CÓMO ESTÁ LA VIBRA?</small><button data-vibe>🔥 <b>18</b></button><button data-vibe>💜 <b>13</b></button><button data-vibe>🌊 <b>10</b></button></div></div><div class="chat-box"><header><div><i></i><b>Chat en vivo</b></div><span><b id="onlineCount">34</b> conectados</span></header><div class="messages" id="chatMessages"><article class="msg"><span class="avatar pink">C</span><div><small>Camila · ahora</small><p>Esta canción está demasiado buena ✨</p></div></article><article class="msg me"><div><small>Pipe · ahora</small><p>Perfecta para trabajar jajaja</p></div><span class="avatar blue">P</span></article><article class="msg"><span class="avatar green">D</span><div><small>Diego · ahora</small><p>Saludos desde Coquimbo 🌊</p></div></article><article class="msg me"><div><small>Sofía · ahora</small><p>¿Cuándo hacen programa con invitados? 👀</p></div><span class="avatar violet">S</span></article></div><form id="chatForm"><input id="chatInput" maxlength="100" placeholder="Escribe algo buena onda..."/><button>Enviar</button></form><small class="demo">Demo visual · tu mensaje queda en este dispositivo</small></div></div></section>
+<section class="special wrap"><div><span class="eyebrow">CUANDO PRENDEMOS LOS MICRÓFONOS</span><h2>Fuera de Frekuencia</h2><p>Felipe, amigos e invitados conversando de música, historias, tecnología y cualquier cosa que aparezca. Sin calendario rígido y sin guion.</p><div class="hosts"><span>F</span><span>C</span><b>Próxima transmisión<br/><small>Muy pronto · Síguenos para enterarte</small></b></div></div><aside><b>“</b><p>Dos amigos, buena música<br/>y algo que conversar.</p><span>— Ese es todo el plan.</span></aside></section>
+<section class="about wrap" id="nosotros"><span>DESDE COQUIMBO · CHILE</span><h2>Música elegida por personas.<br/><em>Para personas.</em></h2><p>Frekuencia está recién comenzando. Queremos construir una radio cercana, entretenida y con espacio para que la gente participe desde el primer día.</p><div><a href="#">◎ Instagram</a><a href="#">♪ TikTok</a><a href="#chat"># Abrir el chat</a></div></section>
+</main><footer class="footer wrap"><a class="logo" href="#"><span class="logo-wave"><i></i><i></i><i></i><i></i><i></i></span><strong>Frekuencia</strong></a><p>Estamos en la misma Frekuencia.</p><span>© 2026 · Coquimbo, Chile</span></footer>
+<div class="mobile-player"><button id="mobilePlay">▶</button><div><small>SONANDO AHORA</small><b>Midnight Signals</b><span>Neon Coast</span></div><div class="mini-wave"><i></i><i></i><i></i><i></i></div></div>
 </div>
-
-@section Scripts{
-<script>
-(()=>{
- const play=document.getElementById('playButton'),hero=document.getElementById('heroPlay'),mobile=document.getElementById('mobilePlay');
- const toggle=()=>{const on=!play.classList.contains('on');play.classList.toggle('on',on);hero.classList.toggle('on',on);mobile.classList.toggle('on',on);hero.innerHTML=on?'<span>Ⅱ</span> Pausar radio':'<span>▶</span> Escuchar ahora';mobile.textContent=on?'Ⅱ':'▶';document.querySelector('.site').classList.toggle('is-playing',on)};
- [play,hero,mobile].forEach(x=>x?.addEventListener('click',toggle));
- document.getElementById('heart')?.addEventListener('click',e=>{const b=e.currentTarget;b.classList.toggle('liked');b.firstChild.textContent=b.classList.contains('liked')?'♥ ':'♡ ';const n=b.querySelector('span');n.textContent=Number(n.textContent)+(b.classList.contains('liked')?1:-1)});
- document.querySelectorAll('[data-vibe]').forEach(b=>b.addEventListener('click',()=>{b.querySelector('b').textContent=Number(b.querySelector('b').textContent)+1;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),300)}));
- const form=document.getElementById('chatForm'),input=document.getElementById('chatInput'),box=document.getElementById('chatMessages');
- const add=(name,text,initial,color,side='left')=>{const template=box.querySelector('.msg');const m=template.cloneNode(true);m.className=`msg ${side} fresh`;const avatar=m.querySelector('.avatar');avatar.className=`avatar ${color}`;avatar.textContent=initial;m.querySelector('small').textContent=`${name} · ahora`;m.querySelector('p').textContent=text;if(side==='right'){m.append(avatar)}else{m.prepend(avatar)}box.append(m);while(box.querySelectorAll('.msg').length>7)box.querySelector('.msg').remove();box.scrollTo({top:box.scrollHeight,behavior:'smooth'})};
- form?.addEventListener('submit',e=>{e.preventDefault();const text=input.value.trim();if(!text)return;add('Tú',text,'T','orange','right');input.value=''});
- const demo=[['Vale','Esta selección está demasiado linda 💜','V','pink'],['Nico','¿Qué canción viene ahora?','N','blue'],['Anto','La estoy escuchando desde La Serena 🙌','A','green'],['Fran','Temazo. No la conocía ✨','F','violet']];let i=0;
- setInterval(()=>{if(document.hidden)return;const m=demo[i++%demo.length];add(...m,i%2?'left':'right');document.getElementById('onlineCount').textContent=32+Math.floor(Math.random()*7)},10000);
-})();
-</script>}
+@section Scripts{<script>(()=>{const p=document.getElementById('playButton'),h=document.getElementById('heroPlay'),m=document.getElementById('mobilePlay');const toggle=()=>{const on=!p.classList.contains('on');p.classList.toggle('on',on);h.classList.toggle('on',on);m.textContent=on?'Ⅱ':'▶';document.querySelector('.site').classList.toggle('playing',on)};[p,h,m].forEach(x=>x?.addEventListener('click',toggle));document.getElementById('heart')?.addEventListener('click',e=>{const b=e.currentTarget,on=b.classList.toggle('liked');b.firstChild.textContent=on?'♥ ':'♡ ';const n=b.querySelector('span');n.textContent=+n.textContent+(on?1:-1)});document.querySelectorAll('[data-vibe]').forEach(b=>b.onclick=()=>{b.querySelector('b').textContent=+b.querySelector('b').textContent+1;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),300)});const box=document.getElementById('chatMessages'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');const add=(name,text,letter,color,me=false)=>{const x=box.querySelector('.msg').cloneNode(true);x.className='msg fresh'+(me?' me':'');const a=x.querySelector('.avatar');a.className='avatar '+color;a.textContent=letter;x.querySelector('small').textContent=name+' · ahora';x.querySelector('p').textContent=text;me?x.append(a):x.prepend(a);box.append(x);while(box.children.length>7)box.firstElementChild.remove();box.scrollTo({top:box.scrollHeight,behavior:'smooth'})};form.onsubmit=e=>{e.preventDefault();const t=input.value.trim();if(t){add('Tú',t,'T','orange',true);input.value=''}};const demo=[['Vale','Esta selección está preciosa 💜','V','pink'],['Nico','¿Cuál viene ahora?','N','blue'],['Anto','Escuchando desde La Serena 🙌','A','green']];let i=0;setInterval(()=>{if(!document.hidden){add(...demo[i++%demo.length],i%2===0);document.getElementById('onlineCount').textContent=32+Math.floor(Math.random()*7)}},10000)})();</script>}
